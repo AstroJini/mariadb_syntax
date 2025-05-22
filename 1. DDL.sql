@@ -67,7 +67,7 @@ alter table post modify column title varchar(255) not null, modify column conten
 
 -- drop : 테이블을 삭제하는 명령어
 drop table abc;
-
+drop table if exists abc;
 
 -- 테이블을 삭제하기 전에 show create table 테이블명; 을 해서 복제를 해둔뒤 삭제를 하면 삭제하더라도 다시 살려낼 수 있음음
 
