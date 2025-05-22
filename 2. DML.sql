@@ -44,3 +44,26 @@ select distinct name from author;
 -- 아무런 정렬조건 없이 조회할 경우에는 pk기준으로 오름차순
 select * from author;
 select * from author order by name;
+
+
+-- 멀티컬럼 order by : 여러컬럼으로 정렬시에, 먼저 쓴 컬럼 우선정렬. 중복시, 그 다음 정렬옵션 적용
+select * from author order by name desc, email asc; --name으로 먼저 정렬 후, name이 중복되면 email로 정렬.
+
+-- 결과값 개수 제한
+select * from author order by id desc limit 1;
+
+-- 별칭(alias)를 이용한 select
+select name as '이름', email as '이메일' from author;
+
+-- 테이블 명에도 별칭 사용가능
+select name, email from author as a;
+select a.name, a.email from author as a;
+select a.name, a.email from author a; --as를 생략할 수 있다.
+
+-- null을 조회조건으로 활용
+select * from author where password is null;
+select * from author where password is not null;
+
+-- 프로그래머스 sql문제풀이
+-- 여러 기준으로 정렬하기
+-- 상위 n개 레코드
