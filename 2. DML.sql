@@ -30,7 +30,7 @@ insert into author (id, name, email, password) values (3, "홍길동5", "hong3@n
 --정답
 select * from author; --어떤 조회조건없이 모든 컬럼 조회
 select * from author where id=1; --where 뒤에 조회조건을 통해 filtering
-select * from author where name='홍길동동';
+select * from author where name='홍길동';
 select * from author where id>3;
 select * from author where id>2 and name='홍길동4';
 
