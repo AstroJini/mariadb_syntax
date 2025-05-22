@@ -44,7 +44,7 @@ show index from author;
 
 -- alter : 테이블의 구조를 변경
 -- 테이블의 이름 변경
-alter table posts rename post;
+    alter table posts rename post;
 -- 테이블의 컬럼 추가
 alter table author add column age int;
 -- 테이블 컬럼 삭제
