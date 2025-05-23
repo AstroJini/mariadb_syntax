@@ -71,7 +71,9 @@ select cast('12' as int) --int를 쓰면 안되는 경우도 있음 예를들면
 -- 날짜조회 방법 : 2025-05-23 14:30:25
 -- like패턴, 부등호 활용, date_format
 select * from post where created_time like '2025-05%'; --문자열처럼 조회
-select * from post where created_time >= '2025-05-01' and created_time <= '2025-05-30'; --범위를 지정하여 조회
+select * from post where created_time >= '2025-05-01 00:00:00' and created_time < '2025-05-31 00:00:00'; --범위를 지정하여 조회
+-- *뒤에 오는 시간 값까지 비교하고 있기에 뒤에 오는 시간은 하루 뒤로 조회한다. | 또한 날짜만 입력시 시간까지 자동으로 기입되기때문에 주의해야한다!!!!!!!!
+--  | 본래 실 데이터는 시분초까지 나온다. 하지만, 데이터의 범위가 크거나 같은걸 조회 했기 때문에 시분초를 입력하지 않더라도 해당일에 포함되어 조회가 가능하다.
 
 -- date format 활용
 --Y와 H는 무조건 대문자로 사용해야함
