@@ -12,7 +12,7 @@ alter table author modify column id bigint;
 
 -- DECIMAL (총자릿수, 소수부 자리수)
 alter table post add column price decimal(10, 3);
--- DECIMAL 소수점 초과시 잘림현상 발생생
+-- DECIMAL 소수점 초과시 잘림현상 발생
 insert into post (id, title, price, author_id) values(7, 'hello puthon,', 10.33412)
 
 -- 문자타입: 고정길이(char), 가변길이(varchar, text)
