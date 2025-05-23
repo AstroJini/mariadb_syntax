@@ -83,3 +83,5 @@ select date_format(created_time, '%H-%i-%s') from post;
 select * from post where date_format(created_time, '%Y') = '2025';--연도
 select * from post where date_format(created_time, '%m') = '05';--연도
 select * from post where date_format(created_time, '%d') = '23';--날짜
+
+select * from post where cast( date_format(created_time, '%m')as unsigned)=5;
