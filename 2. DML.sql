@@ -33,6 +33,8 @@ select * from author where id=1; --where 뒤에 조회조건을 통해 filtering
 select * from author where name='홍길동';
 select * from author where id>3;
 select * from author where id>2 and name='홍길동4';
+select * from author where id (1, 3, 5);
+select * from post where author_id (select id from author where name='hong');
 
 
 -- 중복 제거 조회 : distinct
@@ -67,3 +69,5 @@ select * from author where password is not null;
 -- 프로그래머스 sql문제풀이
 -- 여러 기준으로 정렬하기
 -- 상위 n개 레코드
+
+
