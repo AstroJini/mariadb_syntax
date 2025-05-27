@@ -41,3 +41,19 @@ BEGIN
     commit;
 END//
 DELIMITER ;
+
+
+
+DELIMITER //
+create procedure transaction_test()
+BEGIN
+    declear exit handler for SQLEXCEPTION
+    begin
+    rollback;
+    end;
+    start transaction;
+    update author set post_count=post_count+1 where id = 3;
+    insert into post(title, contents, author_id) values(titleInput, contentInput,idInput);
+    commit;
+END//
+DELIMITER ;
