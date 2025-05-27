@@ -57,3 +57,33 @@ BEGIN
     commit;
 END//
 DELIMITER ;
+
+
+
+DELIMITER //
+create procedure transaction_repeat()
+BEGIN
+    declear exit handler fot SQLEXCEPTION
+    begin
+    rollback;
+    end;
+    start transaction;
+    update author set post_count=post_count+1 where id = 3;
+    insert into post(title, contents, author_id) values('hello', 'hello...', 3);
+    commit;
+END//
+DELIMITER ;
+
+DELIMITER //
+create procedure transaction_repeat(in titleInput varchar(255), in contentInput varchar(255), in idInput bigint)
+BEGIN
+    declear exit handler SQLEXCEPTION
+    begin
+    rollback;
+    end;
+    start transaction;
+    update author set post_count=post_count+1 where id = idInput;
+    insert into post(title, contents, author_id) values(titleInput, contentInput, idInput);
+    commit;
+END//
+DELIMITER ;
