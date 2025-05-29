@@ -11,5 +11,8 @@ create table USERTB (
 -- 상품 테이블
 create table PRODUCTTB (
     id bigint auto_increment primary key,
-    
+    product_name varchar(255) not null,
+    stocks int not null default 0,
+    status enum('sale', 'out of stock') not null default 'out of stock',
+    seller 
 )
