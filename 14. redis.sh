@@ -101,7 +101,7 @@ rpush user:1:recent:product melon
 rpush user:1:recent:product mango
 
 # 최근 본 상품 3개 조회
-lrange -3 -1
+lrange user:1:recent:product -3 -1
 
 # set 자료구조 : 중복없음, 순서없음
 sadd memberlist m1
@@ -121,8 +121,10 @@ sismember memberlist m2
 
 # 게시글 상세보기에 들어가면
 scard posting:likes:1
-sismember posting:likes:1
+sismember posting:likes:1 a1@naver.com
 # 게시글에 좋아요를 하면
 sadd posting:likes:1 a1@naver.com
 # 좋아요한 사람을 클릭하면
-smembers posting:likes:1 a1@naver.com
+smembers posting:likes:1
+
+# zset : sorted set | 정렬된 set
