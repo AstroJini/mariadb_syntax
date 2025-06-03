@@ -128,3 +128,38 @@ sadd posting:likes:1 a1@naver.com
 smembers posting:likes:1
 
 # zset : sorted set | 정렬된 set
+# zset을 활용해서 최근시간순으로 정렬 가능하다
+# zset도 set이므로 같은 상품을 add할 경우에 중복이 제거되고 score(시간)값만 업데이트
+zadd user:1:recent:product 091330 mango --1
+zadd user:1:recent:product 091331 apple --2, 중복된 값이 있을 경우 가장 마지막에 입력된 데이터만 남는다
+zadd user:1:recent:product 091332 banana --3
+zadd user:1:recent:product 091333 orange --4
+zadd user:1:recent:product 091334 apple --5
+
+# zset 조회 : zrange(score기준 오름차순), zrevrange (score기준 내림차순)
+zrange user:1:recent:product 0 2
+zrange user:1:recent:product -3 -1
+# withscores를 통해 score값까지 같이 출력
+zrevrange user:1:recent:product 0 2 withscores
+
+# zset 실전 활용: 주식시세저장
+# 종목 : 삼성전자, 시세 : 55,000원, 시간 : 현재시간(유닉스타임스탬프) -> 년월일시간을 초단위로 변환한 것
+
+zadd stock:price:se 1748911141 55000
+zadd stock:price:lg 1748911142 100000
+zadd stock:price:se 1748911142 55500
+# 삼성전자의 현재시세
+zrevrange stock:price:lg 0 0
+zrange stock:price:lg -1 -1
+-> 시간이 변하고 가격이 중복됐을 때는 기존 데이터가 삭제되기 때문에 이 방식은 사용하기가 어렵다.
+
+# hashes : value가 map형태의 자료구조(key:vlaue, key:vlaue...형태의 자료구조조)
+set member:info:1 "{\"name\":\"hong\", \"email\":\"hong@daum.net\", \"age\":30}" 
+hset member:info:1 name hong email hong@daum.net age 30
+# 특정 값 조회
+hget member:info:1 name
+#  모든객체값 조회
+hgetall member:info:1
+# 특정 요소값 수정
+hset member:info:1 name hong2
+# redis활용상황 : 빈번하게 변경되는 객체값을 저장시 효율적
